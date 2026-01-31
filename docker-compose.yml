@@ -1,0 +1,22 @@
+services:
+  api:
+    build:
+      context: ./backend/MeetMerge.Api
+    ports:
+      - "8080:8080"
+    environment:
+      - CORS_ORIGINS=http://localhost:4200
+    volumes:
+      - api-data:/data
+
+  web:
+    image: nginx:alpine
+    depends_on:
+      - api
+    ports:
+      - "8081:80"
+    volumes:
+      - ./frontend/meetmerge/dist/meetmerge:/usr/share/nginx/html:ro
+
+volumes:
+  api-data:

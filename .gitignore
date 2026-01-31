@@ -1,0 +1,8 @@
+**/node_modules/
+**/dist/
+**/.angular/
+**/bin/
+**/obj/
+*.sqlite
+*.db
+.DS_Store
