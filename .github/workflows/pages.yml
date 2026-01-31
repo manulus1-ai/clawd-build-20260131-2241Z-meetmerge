@@ -36,10 +36,14 @@ jobs:
           REPO_NAME="${{ github.event.repository.name }}"
           npm run build -- --base-href "/${REPO_NAME}/"
 
+      - name: SPA fallback (404.html)
+        working-directory: frontend/meetmerge
+        run: cp dist/meetmerge/browser/index.html dist/meetmerge/browser/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: frontend/meetmerge/dist/meetmerge
+          path: frontend/meetmerge/dist/meetmerge/browser
 
   deploy:
     environment:
